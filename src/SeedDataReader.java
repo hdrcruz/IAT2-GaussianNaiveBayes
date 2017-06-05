@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-public class SeedDataReader {
+public class SeedDataReader implements DataReader{
 
 
     GaussianCase caso = new GaussianCase();

@@ -6,15 +6,27 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class NBGaussian {
 
-    List<GaussianCase> treino = new ArrayList<>();
-    Map<Integer,Category> categorias = new ConcurrentHashMap<>();
+    private List<GaussianCase> treino = new ArrayList<>();
+    private Map<Integer,Category> categorias = new ConcurrentHashMap<>();
+    private List<GaussianCase> teste = new ArrayList<>();
 
 
     public NBGaussian(List<GaussianCase> treino) {
         this.treino = treino;
+        train();
     }
 
-    public double prior(){
+    public List<GaussianCase> getRandomTeste(int i) {
+
+        for (int j = 0; j < i; j++) {
+            teste.add(treino.get(new Random().nextInt(treino.size())));
+        }
+        return teste;
+    }
+
+
+
+    public double train(){
         double res = 0;
         int ocurrences = 0;
         for (GaussianCase caso: treino){
@@ -83,7 +95,11 @@ public class NBGaussian {
         return var;
     }
 
-
+    public void classify(List<GaussianCase> teste){
+        for (GaussianCase caso: teste) {
+            predict(caso);
+        }
+    }
 
     public double predict(GaussianCase caso){
         double pC = 1.0 / categorias.size();
@@ -102,7 +118,8 @@ public class NBGaussian {
         }
 
         StringBuilder str = new StringBuilder();
-        int max;
+        str.append(caso.toString());
+        str.append("CLASSIFICAÇÃO : \n");
         for (Map.Entry<Integer, Double> entry: probability.entrySet()){
             str.append("( Classe : ");
             str.append(entry.getKey());

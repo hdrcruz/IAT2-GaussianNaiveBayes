@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Created by Helder on 05/06/2017.
  */
-public class ScalesDataReader {
+public class ScalesDataReader implements DataReader{
     GaussianCase caso;
     List<GaussianCase> treino = new ArrayList<>();
 

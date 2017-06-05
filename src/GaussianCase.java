@@ -43,17 +43,17 @@ public class GaussianCase {
     public String toString(){
 
         StringBuilder caso = new StringBuilder();
-        //caso.append("CASO\n");
+        caso.append("CASO :\n");
         for (Map.Entry<Integer,Double> f: features.entrySet()){
             caso.append("( Atributo : ");
             caso.append(f.getKey());
             caso.append(" Valor: ");
             caso.append(f.getValue());
-            caso.append(" ) ");
+            caso.append(" ) \n");
         }
-        caso.append(" ( Classe: ");
+        caso.append("( Classe: ");
         caso.append(ClassName);
-        caso.append(" ) ");
+        caso.append(" )\n");
         return caso.toString();
     }
 
